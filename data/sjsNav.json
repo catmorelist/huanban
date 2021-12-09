@@ -1,0 +1,81 @@
+[
+    {
+        "name":"全部",
+        "category":""
+    },
+
+    {
+        "name":"UI设计师",
+        "category":"ui_desugner"
+    },
+
+    {
+        "name":"平面设计师",
+        "category":"designer"
+    },
+
+    {
+        "name":"摄影师",
+        "category":"photographer"
+    },
+
+    {
+        "name":"插画师",
+        "category":"illustrator"
+    },
+
+    {
+        "name":"漫画师",
+        "category":"graphic"
+    },
+
+    {
+        "name":"动画师",
+        "category":"animator"
+    },
+
+    {
+        "name":"家居设计师",
+        "category":"household_desiger"
+    },
+
+    {
+        "name":"室内设计师",
+        "category":"interior_desiger"
+    },
+
+    {
+        "name":"建筑设计师",
+        "category":"arcgutect"
+    },
+
+    {
+        "name":"服装设计师",
+        "category":"designer"
+    },
+
+    {
+        "name":"工业设计师",
+        "category":"industrial_designer"
+    },
+
+    {
+        "name":"造型师",
+        "category":"stylist"
+    },
+
+    {
+        "name":"游戏美术师",
+        "category":"game_designer"
+    },
+
+    {
+        "name":"手工艺人",
+        "category":"artisan"
+    },
+
+    {
+        "name":"其他",
+        "category":"other"
+    }
+]
