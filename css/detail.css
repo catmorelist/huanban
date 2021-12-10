@@ -178,7 +178,7 @@ li {
 
 .contents_left .bigImg {
     width: 880px;
-    height: 622px;
+    /* height: 622px; */
 }
 
 .contents_left .contents_left2 {
@@ -201,7 +201,7 @@ li {
 }
 .contents_left .contents_left2 .smallImg img {
     width: 820px;
-    height: 580px;
+    /* height: 580px; */
     display:block;
 }
 .contents_left .contents_time{
@@ -418,7 +418,7 @@ li {
 }
 .contents_right .contents_right2 .time .node_time .thatT{
     float:right;
-    margin-left:54px;
+    margin-left:68px;
 }
 .contents_right .contents_right2 .time .card{
     font-size:14px;

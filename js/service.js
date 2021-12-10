@@ -216,6 +216,6 @@ function randList(data){
 list_content.onclick = function(e){
     if(e.target.classList.contains("images")){
         let service_id = e.target.getAttribute("service_id");
-        location.href = `./detail.html?${service_id}`;
+        location.href = `./detail.html?id=${service_id}`;
     }
 }
