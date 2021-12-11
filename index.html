@@ -9,7 +9,7 @@
     <script src="./js/ajax.js"></script>
     <link rel="stylesheet" href="./css/index.css">
     <!-- <script src="./js/owncookie.js"></script> -->
-    <!-- <link rel="stylesheet" href="./swiper-master/swiper-bundle.min.css"> -->
+    <link rel="stylesheet" href="./swiper-master/swiper-bundle.min.css">
 </head>
 
 <body>
@@ -512,8 +512,19 @@
     </div>
 
     <!-- <script src="./js/jquery.min.js"></script> -->
-    <!-- <script src="./swiper-master/swiper-bundle.min.js"></script> -->
-    <!-- <script type="module" src="./js/index.js"></script> -->
+    <script src="./swiper-master/swiper-bundle.min.js"></script>
+    <script type="module" src="./js/index.js"></script>
+
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+          autoplay: {
+            delay: 3000,
+            stopOnLastSlide: false,
+            disableOnInteraction: true,
+          },
+          loop:true,
+        });
+      </script>
 </body>
 
 </html>

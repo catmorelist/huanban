@@ -201,15 +201,17 @@ async function get0wnlist(){
     randOwnlist(res)
 }
 
-let contents_own =document.querySelector(".contents_own");
+let content =document.querySelector(".content");
+
+   
 
 
 // 请求设计服务数据
 function randService(res){
-    contents_own.innerHTML = res.map(item=>{
+   let contents_own = getContentsOwn()
+   contents_own.innerHTML = res.map(item=>{
     //   console.log(item);
-        return `
-        <div class="item">
+        return `<div class="item">
             <img src="https://muse-img.huabanimg.com/${item.cover[0].key}_/both/280x280"
                 alt="" />
             <label class="title">${item.name}</label>
@@ -225,42 +227,105 @@ function randService(res){
                     item.extra.sub_services.length != 0 ? "提供可拓展服务" : ""
                 } </p>
             </footer>
-        </div>
-    `
+        </div>`
     }).join("")
 }
 
 // 请求原创数据
 function randProduct(res){
+    let contents_own = getContentsOwn()
     contents_own.innerHTML = res.map(item=>{
-        console.log(item);
-        return `
-        <div class="item">
+        return `<div class="item">
             <img src="https://hbimg.huabanimg.com/${item.cover.key}_/both/280x280"
                 alt="" />
             <label class="title1">${item.title}</label>
             <footer class="extra">
                 <p class="tip1">72张图片</p>
             </footer>
-        </div>
-    `
+        </div>`
     }).join("")
 }
 
 // 请求个人资料数据
 function randOwnlist(res){
-    console.log(res);
-    contents_own.innerHTML = res.map(item=>{
-        console.log(item);
-        return `
-        <div class="item">
-            <img src="https://hbimg.huabanimg.com/${item.cover.key}_/both/280x280"
-                alt="" />
-            <label class="title1">${item.title}</label>
-            <footer class="extra">
-                <p class="tip1">72张图片</p>
-            </footer>
-        </div>
-    `
-    }).join("")
+      // 格式化时间
+      let day = parseInt(res.extra.response_time / 24 / 60 / 60);
+      let hours = parseInt(res.extra.response_time / 60 / 60);
+      let minute = parseInt(res.extra.response_time / 60 % 60);
+      let second = parseInt(res.extra.response_time % 60);
+
+    let contents_text =  getContentstext()
+    contents_text.innerHTML =`<div class="item">
+        <label for="">所在地</label>
+        <p class="city">${res.city}</p>
+    </div>
+    <div class="item">
+        <label for="">擅长领域</label>
+        <p>${res.category.map(item=>{
+            return dataType[item]
+        }).join("")}</p>
+    </div>
+    <div class="item">
+        <label for="">实名认证</label>
+        <p>已认证</p>
+    </div>
+    <div class="item">
+        <label for="">评分</label>
+        <p class="status">${res.extra.rating}</p>
+    </div>
+    <div class="item">
+        <label for="">响应时间</label>
+        <p class="status">${day == 0?
+            hours + "时" + minute + "分" + second + "秒" :
+            day + "天" + hours + "时" + minute + "分" + second + "秒"
+        , hours==0 ? minute + "分" + second + "秒":  minute + "分" + second + "秒"}</p>
+    </div>
+    <div class="item">
+        <label for="">个人简介</label>
+        <p class="person">${res.desc}</p>
+    </div>`
+}
+
+
+
+// 创建contents_own元素封装
+function getContentsOwn(){
+    // 删除contents_text元素前先判断是否存在
+    if(document.querySelector(".contents_text")){
+        content.removeChild(document.querySelector(".contents_text"));
+    }
+    //创建contents_own元素
+    let div = document.createElement("div");
+    content.appendChild(div);
+    div.classList.add("contents_own");
+    let contents_own = document.querySelector(".contents_own");
+    return contents_own;
+}
+
+// 创建contents_text元素封装
+function getContentstext(){
+    //删除contents_own元素前先判断是否存在 
+    if(document.querySelector(".contents_own")){
+        content.removeChild(document.querySelector(".contents_own"));
+    }
+    //创建contents_own元素
+    let div = document.createElement("div");
+    content.appendChild(div);
+    div.classList.add("contents_text");
+    let contents_text = document.querySelector(".contents_text");
+    return contents_text;
+} 
+
+
+// 登录，注册绑定点击事件
+let login_register = document.querySelector(".login_register");
+
+login_register.onclick = function(e){
+    if(e.target.classList.contains("login")){
+        location.href = "../html/login.html";
+    }
+
+    if(e.target.classList.contains("register")){
+        location.href = "../html/zhuce.html";
+    }
 }

@@ -180,7 +180,7 @@ async function getList(data) {
         data:data,
     })
     res = JSON.parse(res)
-    // console.log(res);
+    console.log(res);
     randList(res)
 }
 

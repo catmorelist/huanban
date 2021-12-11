@@ -292,6 +292,18 @@ function getListUserT(res){
     }
 }
 
+// 登录，注册绑定点击事件
+let login_register = document.querySelector(".login_register");
+
+login_register.onclick = function(e){
+    if(e.target.classList.contains("login")){
+        location.href = "../html/login.html";
+    }
+
+    if(e.target.classList.contains("register")){
+        location.href = "../html/zhuce.html";
+    }
+}
 
 
 

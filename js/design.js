@@ -16,6 +16,7 @@ let div = document.querySelector(".submenu div");
 
 // 调用渲染头部
 getNav();
+getNavList()
 
 //调用渲染作家信息
 getUserList();
@@ -58,12 +59,22 @@ new Pagination(page, {
 // 获取nav分类数据
 async function getNav() {
     let res = await pAjax({
-        url: "../data/sjsNav.json",
+        url: "../data/nav.json",
     })
     localStorage.setItem('res', res)
     res = JSON.parse(res);
     // console.log(res);
     randNav(res)
+}
+
+async function getNavList() {
+    let res = await pAjax({
+        url: "../data/sjsNav.json",
+    })
+    localStorage.setItem('res', res)
+    res = JSON.parse(res);
+    // console.log(res);
+    randNav2(res)
 }
 
 // 渲染分类和设计服务分类的数据
@@ -73,8 +84,19 @@ function randNav(data) {
         class="${index==0?"active":""}">${item.name}</a>`
     }).join('');
 
-    navs1_1.innerHTML = str;
+
     div.innerHTML = str;
+}
+
+// 渲染分类和设计服务分类的数据
+function randNav2(data) {
+    let str = data.map((item, index) => {
+        return `<a href="#" category="${item.category}" 
+        class="${index==0?"active":""}">${item.name}</a>`
+    }).join('');
+
+    navs1_1.innerHTML = str;
+
 }
 
 // 分类导航绑定点击事件
@@ -108,6 +130,12 @@ async function getUserList(data) {
 //获取渲染父元素
 let concretes = document.querySelector(".concretes");
 
+concretes.onclick = function(e){
+    if(e.target.classList.contains("a")){
+        console.log(1);
+    }
+}
+
 
 // 标签翻译
 let dataType = {
@@ -133,10 +161,10 @@ let dataType = {
 // 渲染user列表
 function randUser(res) {
     // console.log(res);
-
     concretes.innerHTML = res.map(item => {
+        console.log(item);
         let i = textOmit(item.desc)
-        return `<a href="http://localhost:8050/user.html">
+        return `<a href="../html/user.html?user_id=${item.user_id}">
         <div class="list">
             <div class="list1">
                 <div class="list1_txt">
@@ -163,16 +191,9 @@ function randUser(res) {
         </div>
     </a>`
     }).join("")
-
-
-    let list = document.querySelector(".list");
-
-    console.log(list);
-    list.onclick = function () {
-        console.log(1);
-    }
-
 }
+
+
 
 // 文本多行省略封装
 function textOmit(data) {
@@ -193,4 +214,17 @@ function starts(res) {
         str += "★";
     }
     return str;
+}
+
+// 登录，注册绑定点击事件
+let login_register = document.querySelector(".login_register");
+
+login_register.onclick = function(e){
+    if(e.target.classList.contains("login")){
+        location.href = "../html/login.html";
+    }
+
+    if(e.target.classList.contains("register")){
+        location.href = "../html/zhuce.html";
+    }
 }
