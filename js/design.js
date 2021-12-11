@@ -14,13 +14,51 @@ container.innerHTML = header();
 let div = document.querySelector(".submenu div");
 // console.log(div);
 
-
+// 调用渲染头部
 getNav();
+
+//调用渲染作家信息
+getUserList();
+
+// 分页的功能
+// pagination
+let page = document.querySelector(".pagenation");
+new Pagination(page, {
+    pageInfo: {
+        pagenum: 1, // 默认显示第一几页
+        pagesize: 20, // 每一页多少条数据
+        total: 1000, // 总共有多少条数据
+        totalpage: 100, // 总共有多少页
+    },
+    textInfo: {
+        first: "首页",
+        prev: "上一页",
+        next: "下一页",
+        last: "末尾",
+    },
+    change(idx) {
+        // 点击分页的时候 重新获取分页的数据 渲染结构
+        // idx:表示当前点击的页数
+        let category = localStorage.getItem("category");
+        let sub_category = localStorage.getItem("sub_category");
+
+        // 请求数据的参数的处理
+        let str = `limit=20&page=${idx}`;
+
+        // console.log(str);
+        getUserList(str);
+        scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    },
+});
+
 
 // 获取nav分类数据
 async function getNav() {
     let res = await pAjax({
-        url: "../data/nav.json",
+        url: "../data/sjsNav.json",
     })
     localStorage.setItem('res', res)
     res = JSON.parse(res);
@@ -39,37 +77,120 @@ function randNav(data) {
     div.innerHTML = str;
 }
 
+// 分类导航绑定点击事件
 navs1_1.onclick = function (e) {
     navs1_1.querySelector(".active").classList.remove("active");
     e.target.classList.add("active");
 
-    let i = e.target.getAttribute("category");
-    let data = JSON.parse(localStorage.getItem("res"));
+    let category = e.target.getAttribute("category");
+    if (!category) {
+        getUserList();
+    }
 
-    let res = data.filter(item=>{
-        // console.log(item.category);
-        return item.category == i;
-    })
-    
+    category = `category=${category}`;
+    // console.log(category);
+    getUserList(category);
 }
 
-let concretes = dcoument.querySelector(".concretes");
-
-getList();
-
-// 获取页表数据
-async function getList(){
+// 获取作家json数据
+async function getUserList(data) {
     let res = await pAjax({
-        url: "https://muse.huaban.com/api/v1/services/",
+        url: "https://muse.huaban.com/api/v1/users/",
+        data: data,
     })
-    res = JSON.parse(res)
-    randList(res)
+    // localStorage.setItem("user",res)
+
+    res = JSON.parse(res);
+    randUser(res);
 }
 
-// 渲染结构
-function randList(data){
-    container.innerHTML = data.map(item=>{
-        return ``
-    })
+
+//获取渲染父元素
+let concretes = document.querySelector(".concretes");
+
+
+// 标签翻译
+let dataType = {
+    illustrator: '插画师',
+    graphic: '漫画师',
+    artisan: '手工艺人',
+    ui_designer: 'UI设计师',
+    designer: '平面设计师',
+    other: '其他',
+    animator: '动画师',
+    game_designer: '游戏美术师',
+    artisan: '手工艺人',
+    industrial_designer: '工业设计师',
+    photographer: '摄影师',
+    stylist: '造型师',
+    interior_designer: '室内设计师',
+    architect: "建筑设计师",
+    household_desiger: '家居设计师',
+    costume_designer: '服装设计师'
 }
 
+
+// 渲染user列表
+function randUser(res) {
+    // console.log(res);
+
+    concretes.innerHTML = res.map(item => {
+        let i = textOmit(item.desc)
+        return `<a href="http://localhost:8050/user.html">
+        <div class="list">
+            <div class="list1">
+                <div class="list1_txt">
+                    <h3>${item.username}</h3>
+                    <p>
+                        <span>${item.service_count}个设计服务</span>
+
+                        ${item.extra.rating ?
+                    `<span>●</span><span>评价：</span><b>${starts(item)}</b>`
+                    : ""}
+                        
+                    </p>
+                    <div class="ph">
+                    ${item.category.map(item=>{
+                        return ` <p>${dataType[item]}</p>`
+                    }).join("")}
+                    </div>
+                </div>
+                <img src="	https://hbimg.huabanimg.com/${item.avatar.key}_/both/140x140" alt="">
+            </div>
+            <div class="list2">
+               ${i}
+            </div>
+        </div>
+    </a>`
+    }).join("")
+
+
+    let list = document.querySelector(".list");
+
+    console.log(list);
+    list.onclick = function () {
+        console.log(1);
+    }
+
+}
+
+// 文本多行省略封装
+function textOmit(data) {
+    let length = data.length;
+    if (length > 45) {
+        var str = '';
+        str = data.substring(0, 45) + "....."
+        return str;
+    }
+}
+
+
+// 星星封装
+function starts(res) {
+    let length = res.extra.rating;
+    let str = "";
+    for (var i = 0; i < length; i++) {
+        str += "★";
+    }
+    return str;
+}

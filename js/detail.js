@@ -199,6 +199,7 @@ function getListUserO(res){
 //    let res =  localStorage.getItem("res");
 //    res = JSON.parse(res);
 
+// 星星
    let stars = '';
     for (let i = 0; i < res.rating; i++) {
         stars += '★ '
@@ -227,15 +228,15 @@ function getListUserO(res){
    </div>`
 
    getListUserT(res);
+   
 }
 
 let contents_right2 = document.querySelector(".contents_right2");
 
 
-
 // 渲染右侧第二个
 function getListUserT(res){
-    // console.log(res);
+    console.log(res);
 
     // 格式化时间
     let day = parseInt(res.user.extra.response_time / 24 / 60 / 60);
@@ -277,5 +278,20 @@ function getListUserT(res){
     <p class="text">
         ${res.user.desc}
     </p>`
+
+
+
+    let user1 = document.querySelector(".user1");
+    user1.onclick = function(e){
+        if(e.target.classList.contains("use_img")){
+            location.href = `../html/user.html?user_id=${res.user_id}`;
+        }
+        if(e.target.classList.contains("user_names")){
+            location.href = `../html/user.html?user_id=${res.user_id}`;
+        }
+    }
 }
+
+
+
 

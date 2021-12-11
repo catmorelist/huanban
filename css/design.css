@@ -155,28 +155,31 @@ li {
     font-size:14px;
 }
 .navs li{
-    width:32px;
+    width:60px;
 }
 .navs1{
     width:1180px;
-    height:80px;
+    /* height:80px; */
     display:flex;
     background-color:#fff;
-    padding:30px 30px;
+    padding:20px 20px;
     box-sizing:border-box;
-    align-items:center;
+    /* align-items:center; */
 }
 .navs1_1{
     display:flex;
+    flex-wrap: wrap;
 }
 .navs a:nth-of-type(1){
     margin-left:12px;
 }
 .navs a{
     display:block;
-    margin-right:28px;
+    margin-right:20px;
+    margin-bottom: 10px;
     color:#000;
     font-size:14px;
+    margin-left:12px;
 }
 .navs1 .active{
     color:red;
@@ -238,7 +241,7 @@ li {
 }
 .concretes .list{
     width:580px;
-    height:222px;
+    height:250px;
     margin:12.5px 10px;
     background:#fff;
     cursor:pointer;
@@ -248,7 +251,7 @@ li {
     transition:all .2s;
 }
 .concretes .list .list1{
-    height:140px;
+    height:165px;
     border-bottom:1px solid #ccc;
     display:flex;
     justify-content:space-between;
@@ -269,8 +272,8 @@ li {
 .concretes .list .list1 .list1_txt h3{
     padding-bottom:6px;
     margin-bottom:8px;
-    width:145px;
-    border-bottom:2px solid #ccc;
+    /* width:145px; */
+    /* border-bottom:2px solid #ccc; */
 }
 .concretes .list .list1 .list1_txt>p{
     color:rgba(0,0,0,.4);
@@ -291,18 +294,21 @@ li {
 }
 .concretes .list .list1 .list1_txt .ph{
     display:flex;
+    width: 400px;
+    flex-wrap: wrap;
 }
 .concretes .list .list1 .list1_txt .ph p{
     padding:5px 10px;
     border:1px solid #ddd;
     font-size:12px;
     margin-right:5.5px;
+    margin-bottom: 5px;
     font-weight: 700;
 }
 .concretes .list .list1 img{
     display:block;
-    width:140px;
-    height:140px;
+    width:165px;
+    height:165px;
 }
 .concretes .list .list2{
     padding:20px;

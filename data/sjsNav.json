@@ -6,7 +6,7 @@
 
     {
         "name":"UI设计师",
-        "category":"ui_desugner"
+        "category":"ui_designer"
     },
 
     {
@@ -41,17 +41,17 @@
 
     {
         "name":"室内设计师",
-        "category":"interior_desiger"
+        "category":"interior_designer"
     },
 
     {
         "name":"建筑设计师",
-        "category":"arcgutect"
+        "category":"architect"
     },
 
     {
         "name":"服装设计师",
-        "category":"designer"
+        "category":"costume_designer"
     },
 
     {

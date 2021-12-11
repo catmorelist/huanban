@@ -177,6 +177,13 @@ li {
     font-size:16px;
     color:#999;
 }
+
+.user1 .user_left .user_left1 .lab label{
+    margin-right: 10px;
+}
+
+
+
 .user1 .user_left .user_left1 .lab span{
     margin-left:30px;
 }

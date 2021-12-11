@@ -184,7 +184,7 @@ async function getList(data) {
     randList(res)
 }
 
-let list_content = document.querySelector(".list_content");
+
 
 // 渲染页表结构
 function randList(data){
@@ -211,11 +211,25 @@ function randList(data){
     }).join("")
 }
 
-
-// let list_content = document.querySelector(".list_content .item .list_content");
+let list_content = document.querySelector(".list_content");
+// 每一个商品绑定点击事件，跳转到商品详情页
 list_content.onclick = function(e){
     if(e.target.classList.contains("images")){
         let service_id = e.target.getAttribute("service_id");
-        location.href = `./detail.html?id=${service_id}`;
+        location.href = `../html/detail.html?id=${service_id}`;
+    }
+}
+
+
+// 登录，注册绑定点击事件
+let login_register = document.querySelector(".login_register");
+
+login_register.onclick = function(e){
+    if(e.target.classList.contains("login")){
+        location.href = "../html/login.html";
+    }
+
+    if(e.target.classList.contains("register")){
+        location.href = "../html/zhuce.html";
     }
 }
