@@ -1,11 +1,22 @@
 {
   "name": "test",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catmorelist/huanban.git"
+  },
+  "bugs": {
+    "url": "https://github.com/catmorelist/huanban/issues"
+  },
+  "homepage": "https://github.com/catmorelist/huanban#readme",
+  "description": "",
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
 }

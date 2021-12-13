@@ -162,7 +162,7 @@ let dataType = {
 function randUser(res) {
     // console.log(res);
     concretes.innerHTML = res.map(item => {
-        console.log(item);
+        // console.log(item);
         let i = textOmit(item.desc)
         return `<a href="../html/user.html?user_id=${item.user_id}">
         <div class="list">
@@ -203,7 +203,7 @@ function textOmit(data) {
         str = data.substring(0, 45) + "....."
         return str;
     }
-}
+}``
 
 
 // 星星封装
@@ -228,3 +228,11 @@ login_register.onclick = function(e){
         location.href = "../html/zhuce.html";
     }
 }
+
+
+    // 设计服务二级导航绑定点击事件
+    div.onclick = function (e) {
+        let category = e.target.getAttribute('category');
+        localStorage.setItem("category",category);
+        location.href = "../html/service.html";
+    }

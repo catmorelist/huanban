@@ -48,3 +48,11 @@ login_register.onclick = function(e){
         location.href = "../html/zhuce.html";
     }
 }
+
+
+   // 设计服务二级导航绑定点击事件
+   div.onclick = function (e) {
+    let category = e.target.getAttribute('category');
+    localStorage.setItem("category",category);
+    location.href = "../html/service.html";
+}
