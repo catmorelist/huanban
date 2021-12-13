@@ -233,6 +233,13 @@ login_register.onclick = function(e){
     // 设计服务二级导航绑定点击事件
     div.onclick = function (e) {
         let category = e.target.getAttribute('category');
-        localStorage.setItem("category",category);
-        location.href = "../html/service.html";
+        // localStorage.setItem("category",category);
+        
+        console.log(category);
+        if(category==""){
+            location.href = "../html/service.html";
+            return;
+
+        }
+        location.href = `../html/service.html?category=${category}`;
     }

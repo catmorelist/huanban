@@ -15,8 +15,11 @@
     "url": "https://github.com/catmorelist/huanban/issues"
   },
   "homepage": "https://github.com/catmorelist/huanban#readme",
-  "description": "",
   "devDependencies": {
-    "express": "^4.17.1"
-  }
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^2.0.1",
+    "mysql": "^2.18.1"
+  },
+  "dependencies": {},
+  "description": ""
 }

@@ -13,7 +13,7 @@ jQuery.validator.addMethod("tellTest", value=>{
 
 // 校验密码
 jQuery.validator.addMethod("passTest", value=>{
-    let passWord = /^[a-z]{5,9}$/i;
+    let passWord = /^[0-9A-Za-z]{6,12}$/i;
     return passWord.test(value);
 }) 
 
@@ -62,6 +62,33 @@ $("#zhuce").validate({
         },
 
     },
+    
+    submitHandler:function(){
+        const username = $("input[name=username]").val();
+        const tell = $("input[name=tel]").val();
+        const password = $("input[name=password]").val();   
+        // console.log(user,tel,password);
+        $.ajax({
+            url:"http://localhost:8090/get",
+            data:{
+                username:username, 
+                tell:tell,
+                password:password,
+            },
+            success:function(res){
+                // console.log(res);
+                if(res.code==false){
+                    alert(res.msg);
+                    return;
+                }
+                alert(res.msg);
+                location.href = "../html/login.html";
+            },
+            error:function(err){
+                console.log(err);
+            }
+        })
+    }
     
 })
 

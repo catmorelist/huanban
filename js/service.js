@@ -97,7 +97,7 @@ function navclick() {
     nav_list.onclick = function (e) {
         if (e.target.classList.contains("item")) {
             // 获取分类中所有的active属性并移出
-            nav_list.querySelector(".active").classListNaNpxove("active");
+            nav_list.querySelector(".active").classList.remove("active");
 
             // 给点击的值加上active属性
             e.target.classList.add("active");
@@ -112,8 +112,8 @@ function navclick() {
             if (!i) {
                 getList();
                 // 如果没有就清楚缓存category
-                localStorageNaNpxoveItem('category');
-                localStorageNaNpxoveItem("sub_category");
+                localStorage.removeItem('category');
+                localStorage.removeItem("sub_category");
                 // 再次渲染子类
                 randNavSub(data[0].sub);
                 getList();
@@ -145,7 +145,7 @@ nav_list2.onclick = function (e) {
         let active = nav_list2.querySelector(".active");
 
         //  判断有无，有则移出active属性
-        active && active.classListNaNpxove("active");
+        active && active.classList.remove("active");
 
         // 给点击的值加上active属性
         e.target.classList.add("active");
@@ -188,24 +188,27 @@ div.onclick = function (e) {
 
 
 
+var x = location.search.replace(/^\?/,'');
+// console.log(x);
 
 
-getList();
+getList(x);
 
-let category = localStorage.getItem("category");
-// console.log(category);
+// let category = localStorage.getItem("category");
+// // console.log(category);
 
 
-if (category == "") {
-    localStorage.removeItem('category');
-    getList();
-    // return;
-} else {
-    category = {
-        "category": category
-    };
-    getList(category);
-}
+// if (category == "") {
+//     localStorage.removeItem('category');
+//     getList();
+//     // return;
+// } else {
+//     category = {
+//         "category": category
+//     };  
+
+//     getList(category);
+// }
 
 
 
