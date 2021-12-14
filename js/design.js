@@ -41,12 +41,10 @@ new Pagination(page, {
         // 点击分页的时候 重新获取分页的数据 渲染结构
         // idx:表示当前点击的页数
         let category = localStorage.getItem("category");
-        let sub_category = localStorage.getItem("sub_category");
-
         // 请求数据的参数的处理
-        let str = `limit=20&page=${idx}`;
+        let str = `${category ? "category=" + category : ""}&limit=20&page=${idx}`;
 
-        // console.log(str);
+        console.log(str);
         getUserList(str);
         scrollTo({
             top: 0,
@@ -105,6 +103,7 @@ navs1_1.onclick = function (e) {
     e.target.classList.add("active");
 
     let category = e.target.getAttribute("category");
+    localStorage.setItem("category",category)
     if (!category) {
         getUserList();
     }
@@ -121,7 +120,7 @@ async function getUserList(data) {
         data: data,
     })
     // localStorage.setItem("user",res)
-
+    console.log(res);
     res = JSON.parse(res);
     randUser(res);
 }
@@ -129,13 +128,6 @@ async function getUserList(data) {
 
 //获取渲染父元素
 let concretes = document.querySelector(".concretes");
-
-concretes.onclick = function (e) {
-    if (e.target.classList.contains("a")) {
-        console.log(1);
-    }
-}
-
 
 // 标签翻译
 let dataType = {
