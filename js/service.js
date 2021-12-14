@@ -261,9 +261,18 @@ list_content.onclick = function (e) {
     }
 }
 
+// 获取cookie
+let cookie = getCookie("login");
+// 调用cookie自定义方法
+getCooks(cookie);
+
 
 // 登录，注册绑定点击事件
 let login_register = document.querySelector(".login_register");
+
+// 获取当前的url地址并存放在本地
+let url = location.href;
+localStorage.setItem("url", url);
 
 login_register.onclick = function (e) {
     if (e.target.classList.contains("login")) {

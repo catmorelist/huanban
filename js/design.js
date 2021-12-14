@@ -130,8 +130,8 @@ async function getUserList(data) {
 //获取渲染父元素
 let concretes = document.querySelector(".concretes");
 
-concretes.onclick = function(e){
-    if(e.target.classList.contains("a")){
+concretes.onclick = function (e) {
+    if (e.target.classList.contains("a")) {
         console.log(1);
     }
 }
@@ -203,7 +203,8 @@ function textOmit(data) {
         str = data.substring(0, 45) + "....."
         return str;
     }
-}``
+}
+``
 
 
 // 星星封装
@@ -216,30 +217,40 @@ function starts(res) {
     return str;
 }
 
+
+// 获取cookie
+let cookie = getCookie("login");
+// 调用cookie自定义方法
+getCooks(cookie);
+
 // 登录，注册绑定点击事件
 let login_register = document.querySelector(".login_register");
 
-login_register.onclick = function(e){
-    if(e.target.classList.contains("login")){
+// 获取当前的url地址并存放在本地
+let url = location.href;
+localStorage.setItem("url", url);
+
+login_register.onclick = function (e) {
+    if (e.target.classList.contains("login")) {
         location.href = "../html/login.html";
     }
 
-    if(e.target.classList.contains("register")){
+    if (e.target.classList.contains("register")) {
         location.href = "../html/zhuce.html";
     }
 }
 
 
-    // 设计服务二级导航绑定点击事件
-    div.onclick = function (e) {
-        let category = e.target.getAttribute('category');
-        // localStorage.setItem("category",category);
-        
-        console.log(category);
-        if(category==""){
-            location.href = "../html/service.html";
-            return;
+// 设计服务二级导航绑定点击事件
+div.onclick = function (e) {
+    let category = e.target.getAttribute('category');
+    // localStorage.setItem("category",category);
 
-        }
-        location.href = `../html/service.html?category=${category}`;
+    console.log(category);
+    if (category == "") {
+        location.href = "../html/service.html";
+        return;
+
     }
+    location.href = `../html/service.html?category=${category}`;
+}

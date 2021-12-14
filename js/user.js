@@ -44,8 +44,8 @@ let user_id = location.search;
 
 
 // 分割数据
-user_id =  user_id.split("=")[1];
-localStorage.setItem("id",user_id)
+user_id = user_id.split("=")[1];
+localStorage.setItem("id", user_id)
 
 // 用户信息
 getUser(user_id)
@@ -77,9 +77,9 @@ let dataType = {
 
 
 // 请求用户数据
-async function getUser(data){
+async function getUser(data) {
     let res = await pAjax({
-        url:`https://muse.huaban.com/api/v1/users/${data}`,
+        url: `https://muse.huaban.com/api/v1/users/${data}`,
     })
     // localStorage.setItem("userData",res);
     res = JSON.parse(res);
@@ -89,20 +89,20 @@ async function getUser(data){
 let user1 = document.querySelector(".user1");
 
 // 渲染结构
-function randUser(res){
+function randUser(res) {
     // console.log(res);
 
-        // 格式化时间
-        let day = parseInt(res.extra.response_time / 24 / 60 / 60);
-        let hours = parseInt(res.extra.response_time / 60 / 60);
-        let minute = parseInt(res.extra.response_time / 60 % 60);
-        let second = parseInt(res.extra.response_time % 60);
-          
-        // 星星
-        let stars = '';
-        for (let i = 0; i < res.extra.rating; i++) {
-            stars += '★'
-        }
+    // 格式化时间
+    let day = parseInt(res.extra.response_time / 24 / 60 / 60);
+    let hours = parseInt(res.extra.response_time / 60 / 60);
+    let minute = parseInt(res.extra.response_time / 60 % 60);
+    let second = parseInt(res.extra.response_time % 60);
+
+    // 星星
+    let stars = '';
+    for (let i = 0; i < res.extra.rating; i++) {
+        stars += '★'
+    }
     user1.innerHTML = `
     <div class="user_left">
         <img src="https://hbimg.huabanimg.com/${res.avatar.key}_/both/120x120"
@@ -149,19 +149,19 @@ function randUser(res){
 
 let designs_this = document.querySelector(".designs_this");
 
-designs_this.onclick = function(e){
+designs_this.onclick = function (e) {
     designs_this.querySelector(".active").classList.remove("active")
-    if(e.target.classList.contains("service")){
+    if (e.target.classList.contains("service")) {
         e.target.classList.add("active");
         getService()
     }
 
-    if(e.target.classList.contains("product")){
+    if (e.target.classList.contains("product")) {
         e.target.classList.add("active");
         getProduct()
     }
 
-    if(e.target.classList.contains("ownlist")){
+    if (e.target.classList.contains("ownlist")) {
         e.target.classList.add("active");
         get0wnlist()
     }
@@ -169,22 +169,22 @@ designs_this.onclick = function(e){
 
 
 // 设计服务请求数据
-async function getService(){
+async function getService() {
     let id = localStorage.getItem("id")
     let len = "limit=100";
     let res = await pAjax({
-        url:`https://muse.huaban.com/api/v1/users/${id}/services/`,
-        data:len,
+        url: `https://muse.huaban.com/api/v1/users/${id}/services/`,
+        data: len,
     })
     res = JSON.parse(res)
     randService(res);
 }
 
 // 原创请求数据
-async function getProduct(){
+async function getProduct() {
     let id = localStorage.getItem("id")
     let res = await pAjax({
-        url:`https://muse.huaban.com/api/v1/users/${id}/boards/`,
+        url: `https://muse.huaban.com/api/v1/users/${id}/boards/`,
     })
     res = JSON.parse(res)
     randProduct(res);
@@ -192,26 +192,27 @@ async function getProduct(){
 
 
 // 个人资料请求数据
-async function get0wnlist(){
+async function get0wnlist() {
     let id = localStorage.getItem("id")
     let res = await pAjax({
-        url:`https://muse.huaban.com/api/v1/users/${id}`,
+        url: `https://muse.huaban.com/api/v1/users/${id}`,
     })
     res = JSON.parse(res)
     randOwnlist(res)
 }
 
-let content =document.querySelector(".content");
+let content = document.querySelector(".content");
 
-   
+
 
 
 // 请求设计服务数据
-function randService(res){
-   let contents_own = getContentsOwn()
-   contents_own.innerHTML = res.map(item=>{
-    //   console.log(item);
-        return `<div class="item">
+function randService(res) {
+    console.log(res);
+    let contents_own = getContentsOwn()
+    contents_own.innerHTML = res.map(item => {
+        //   console.log(item);
+        return `<div class="item" service_id="${item.service_id}">
             <img src="https://muse-img.huabanimg.com/${item.cover[0].key}_/both/280x280"
                 alt="" />
             <label class="title">${item.name}</label>
@@ -232,9 +233,9 @@ function randService(res){
 }
 
 // 请求原创数据
-function randProduct(res){
+function randProduct(res) {
     let contents_own = getContentsOwn()
-    contents_own.innerHTML = res.map(item=>{
+    contents_own.innerHTML = res.map(item => {
         return `<div class="item">
             <img src="https://hbimg.huabanimg.com/${item.cover.key}_/both/280x280"
                 alt="" />
@@ -247,15 +248,15 @@ function randProduct(res){
 }
 
 // 请求个人资料数据
-function randOwnlist(res){
-      // 格式化时间
-      let day = parseInt(res.extra.response_time / 24 / 60 / 60);
-      let hours = parseInt(res.extra.response_time / 60 / 60);
-      let minute = parseInt(res.extra.response_time / 60 % 60);
-      let second = parseInt(res.extra.response_time % 60);
+function randOwnlist(res) {
+    // 格式化时间
+    let day = parseInt(res.extra.response_time / 24 / 60 / 60);
+    let hours = parseInt(res.extra.response_time / 60 / 60);
+    let minute = parseInt(res.extra.response_time / 60 % 60);
+    let second = parseInt(res.extra.response_time % 60);
 
-    let contents_text =  getContentstext()
-    contents_text.innerHTML =`<div class="item">
+    let contents_text = getContentstext()
+    contents_text.innerHTML = `<div class="item">
         <label for="">所在地</label>
         <p class="city">${res.city}</p>
     </div>
@@ -289,9 +290,9 @@ function randOwnlist(res){
 
 
 // 创建contents_own元素封装
-function getContentsOwn(){
+function getContentsOwn() {
     // 删除contents_text元素前先判断是否存在
-    if(document.querySelector(".contents_text")){
+    if (document.querySelector(".contents_text")) {
         content.removeChild(document.querySelector(".contents_text"));
     }
     //创建contents_own元素
@@ -303,9 +304,9 @@ function getContentsOwn(){
 }
 
 // 创建contents_text元素封装
-function getContentstext(){
+function getContentstext() {
     //删除contents_own元素前先判断是否存在 
-    if(document.querySelector(".contents_own")){
+    if (document.querySelector(".contents_own")) {
         content.removeChild(document.querySelector(".contents_own"));
     }
     //创建contents_own元素
@@ -314,33 +315,42 @@ function getContentstext(){
     div.classList.add("contents_text");
     let contents_text = document.querySelector(".contents_text");
     return contents_text;
-} 
+}
+
+// 获取cookie
+let cookie = getCookie("login");
+// 调用cookie自定义方法
+getCooks(cookie);
 
 
 // 登录，注册绑定点击事件
 let login_register = document.querySelector(".login_register");
 
-login_register.onclick = function(e){
-    if(e.target.classList.contains("login")){
+// 获取当前的url地址并存放在本地
+let url = location.href;
+localStorage.setItem("url", url);
+
+login_register.onclick = function (e) {
+    if (e.target.classList.contains("login")) {
         location.href = "../html/login.html";
     }
 
-    if(e.target.classList.contains("register")){
+    if (e.target.classList.contains("register")) {
         location.href = "../html/zhuce.html";
     }
 }
 
 
-    // 设计服务二级导航绑定点击事件
-    div.onclick = function (e) {
-        let category = e.target.getAttribute('category');
-        // localStorage.setItem("category",category);
-        
-        console.log(category);
-        if(category==""){
-            location.href = "../html/service.html";
-            return;
+// 设计服务二级导航绑定点击事件
+div.onclick = function (e) {
+    let category = e.target.getAttribute('category');
+    // localStorage.setItem("category",category);
 
-        }
-        location.href = `../html/service.html?category=${category}`;
+    console.log(category);
+    if (category == "") {
+        location.href = "../html/service.html";
+        return;
+
     }
+    location.href = `../html/service.html?category=${category}`;
+}

@@ -35,12 +35,22 @@ function randNav(data) {
 
     div.innerHTML = str;
 }
+// 获取cookie
+let cookie = getCookie("login");
+// 调用cookie自定义方法
+getCooks(cookie)
 
 // 登录，注册绑定点击事件
-let login_register = document.querySelector(".login_register");
+var login_register = document.querySelector(".login_register");
 
 login_register.onclick = function(e){
+
+// 获取当前的url地址并存放在本地
+let url = location.href;
+localStorage.setItem("url", url);
+
     if(e.target.classList.contains("login")){
+        
         location.href = "../html/login.html";
     }
 
@@ -48,7 +58,6 @@ login_register.onclick = function(e){
         location.href = "../html/zhuce.html";
     }
 }
-
 
      // 设计服务二级导航绑定点击事件
      div.onclick = function (e) {
@@ -63,3 +72,5 @@ login_register.onclick = function(e){
         }
         location.href = `../html/service.html?category=${category}`;
     }
+
+
