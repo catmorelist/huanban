@@ -42,6 +42,10 @@ $("#zhuce").validate({
             passTest:true,
         },
 
+        request:{
+            required:true,
+        }
+
       
     },
 
@@ -60,6 +64,10 @@ $("#zhuce").validate({
             required:"密码不能为空",
             passTest:"密码必须由6-10个数字、字母、标点符号组成。"
         },
+
+        request:{
+            required:"验证码不能为空",
+        }
 
     },
     

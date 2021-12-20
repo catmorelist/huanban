@@ -4,7 +4,8 @@
 }
 
 body {
-    background: #ccc
+    background: url(../img/zhuce.jpg) no-repeat;
+    background-size: cover;
 }
 
 li {
